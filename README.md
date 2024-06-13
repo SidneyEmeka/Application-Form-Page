@@ -11,7 +11,6 @@ Implementing Rows and Colums Alignment in Containers<br>
 	<tr>
 			<th>Form 1</th>	
 			<th>Form 2</th>	
-			<th>Shopping App UI</th>
 		</tr>
 		<tr>
 			<td>
@@ -20,19 +19,16 @@ Implementing Rows and Colums Alignment in Containers<br>
 			<td>
 			<img src="https://github.com/SidneyEmeka/Application-Form-Page/blob/master/assets/home2.png" alt="HOME2"></img>
 			</td>
-						<td>
-			<img src="https://user-images.githubusercontent.com/32166619/224167011-e7ba4af5-1014-453b-bb71-bc1a5bb36788.gif" alt="Shopping App UI"></img>
-			</td>
 		</tr>
 		<tr>
 			<td>
-				🔗 <a href="https://twitter.com/czarify/status/1613090828054073345?s=20&t=xMTAcGtGOsW2bzeGXyWfMg">Tweet</a>
+				🔗 <a href="https://twitter.com/siswipe">Tweet</a>
 			</td>
 			<td>
-				🔗 <a href="https://x.com/czarify/status/1732311731299299742?s=46">Tweet</a>
+				🔗 <a href="https://x.com/sidswipe">Tweet</a>
 			</td>
 			<td>
-				🔗 <a href="https://twitter.com/czarify/status/1633882663055671296?s=20">Tweet</a>
+				🔗 <a href="https://twitter.com/sidswipe">Tweet</a>
 			</td>
 		</tr>
 	</tbody>
