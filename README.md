@@ -27,9 +27,6 @@ Implementing Rows and Colums Alignment in Containers<br>
 			<td>
 				🔗 <a href="https://x.com/sidswipe">Tweet</a>
 			</td>
-			<td>
-				🔗 <a href="https://twitter.com/sidswipe">Tweet</a>
-			</td>
 		</tr>
 	</tbody>
 </table>
