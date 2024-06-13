@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
             ),
             const HeaderWidget(),
             const SizedBox(
-              height: 50,
+              height: 120,
             ),
             const Text("Registration", style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -110,7 +110,7 @@ class _HomeState extends State<Home> {
               controller: stateController,
             ),
             const SizedBox(
-              height: 20,
+              height: 50,
             ),
             TextField(
               controller: essayController,
