@@ -9,6 +9,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String dob = "";
+  String time = "";
   final nameController = TextEditingController();
   final dobController = TextEditingController();
   final courseController = TextEditingController();
@@ -32,11 +34,19 @@ class _HomeState extends State<Home> {
             ),
             const HeaderWidget(),
             const SizedBox(
-              height: 120,
+              height: 100,
             ),
-            const Text("Registration", style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),),
+           const Column(
+             crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Registration", style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             Row(
               children: [
                 Expanded( flex: 4, child: TextField(
@@ -49,14 +59,16 @@ class _HomeState extends State<Home> {
                   width: 16,
                 ),
                 Expanded(child: TextField(
+                  keyboardType: TextInputType.datetime,
                   decoration: const InputDecoration(
                     hintText: "DOB",
                   ),
                   onTap: () => showDatePicker(
-                    context: context,
-                    firstDate: DateTime(2017, 9, 7, 17, 31),
-                    lastDate: DateTime.now(),
-                  ),
+                      context: context,
+                      firstDate: DateTime(2017),
+                      lastDate: DateTime.now())
+                      .then((date) => setState(() =>
+                  dobController.text = date.toString().split(" ").first),),
                   controller: dobController,
                 )
                 ),
@@ -77,13 +89,18 @@ class _HomeState extends State<Home> {
             Row(
               children: [
                 Expanded(child: TextField(
+                  keyboardType: TextInputType.datetime,
                   decoration: const InputDecoration(
                       hintText: "Time"
                   ),
-                  onTap: () => showTimePicker(
-                      context: context,
-                      initialTime: TimeOfDay.now()
-                  ),
+                  onTap: () async => await showTimePicker(
+                      context: context, initialTime: TimeOfDay.now())
+                      .then((selectedTime) => setState(() {
+                    final time =
+                        '${selectedTime!.hour.toString()}: ${selectedTime.minute.toString()}';
+
+                    timeController.text = time;
+                  })),
                   controller: timeController,
                 ),
                 ),
