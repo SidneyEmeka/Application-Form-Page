@@ -19,16 +19,15 @@ class _HomeState extends State<Home> {
   final stateController = TextEditingController();
   final essayController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Container(
         margin: const EdgeInsets.symmetric(
           horizontal: 20,
         ),
         child: ListView(
-          children:  [
+          children: [
             const SizedBox(
               height: 15,
             ),
@@ -36,12 +35,15 @@ class _HomeState extends State<Home> {
             const SizedBox(
               height: 100,
             ),
-           const Column(
-             crossAxisAlignment: CrossAxisAlignment.center,
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("Registration", style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),),
+                Text(
+                  "Registration",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
             const SizedBox(
@@ -49,29 +51,34 @@ class _HomeState extends State<Home> {
             ),
             Row(
               children: [
-                Expanded( flex: 4, child: TextField(
-                  decoration: const InputDecoration(
-                    hintText: "Enter Your Name",
-                  ),
-                  controller: nameController,
-                )),
+                Expanded(
+                    flex: 3,
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        hintText: "Enter Your Name",
+                      ),
+                      controller: nameController,
+                    )),
                 const SizedBox(
                   width: 16,
                 ),
-                Expanded(child: TextField(
-                  keyboardType: TextInputType.datetime,
-                  decoration: const InputDecoration(
-                    hintText: "DOB",
-                  ),
-                  onTap: () => showDatePicker(
-                      context: context,
-                      firstDate: DateTime(2017),
-                      lastDate: DateTime.now())
-                      .then((date) => setState(() =>
-                  dobController.text = date.toString().split(" ").first),),
-                  controller: dobController,
-                )
-                ),
+                Expanded(
+                    flex: 1,
+                    child: TextField(
+                      keyboardType: TextInputType.datetime,
+                      decoration: const InputDecoration(
+                        hintText: "DOB",
+                      ),
+                      onTap: () => showDatePicker(
+                              context: context,
+                              firstDate: DateTime(2017),
+                              lastDate: DateTime.now())
+                          .then(
+                        (date) => setState(() => dobController.text =
+                            date.toString().split(" ").first),
+                      ),
+                      controller: dobController,
+                    )),
               ],
             ),
             const SizedBox(
@@ -88,30 +95,29 @@ class _HomeState extends State<Home> {
             ),
             Row(
               children: [
-                Expanded(child: TextField(
-                  keyboardType: TextInputType.datetime,
-                  decoration: const InputDecoration(
-                      hintText: "Time"
-                  ),
-                  onTap: () async => await showTimePicker(
-                      context: context, initialTime: TimeOfDay.now())
-                      .then((selectedTime) => setState(() {
-                    final time =
-                        '${selectedTime!.hour.toString()}: ${selectedTime.minute.toString()}';
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.datetime,
+                    decoration: const InputDecoration(hintText: "Time"),
+                    onTap: () async => await showTimePicker(
+                            context: context, initialTime: TimeOfDay.now())
+                        .then((selectedTime) => setState(() {
+                              final time =
+                                  '${selectedTime!.hour.toString()}: ${selectedTime.minute.toString()}';
 
-                    timeController.text = time;
-                  })),
-                  controller: timeController,
-                ),
+                              timeController.text = time;
+                            })),
+                    controller: timeController,
+                  ),
                 ),
                 const SizedBox(
                   width: 16,
                 ),
-                Expanded(flex: 3,
+                Expanded(
+                  flex: 3,
                   child: TextField(
                     decoration: const InputDecoration(
-                        hintText: "What Days are You Available"
-                    ),
+                        hintText: "What Days are You Available"),
                     controller: dayController,
                   ),
                 ),
@@ -132,7 +138,8 @@ class _HomeState extends State<Home> {
             TextField(
               controller: essayController,
               decoration: const InputDecoration(
-                hintText: "In not more than 500 words, Briefly explain why you should be selected",
+                hintText:
+                    "In not more than 500 words, Briefly explain why you should be selected",
               ),
               minLines: 3,
               maxLines: 4,
@@ -153,7 +160,8 @@ class _HomeState extends State<Home> {
                     final day = dayController.text;
                     final state = stateController.text;
                     final essay = essayController.text;
-                    print("Name : $name\n,Course : $course\n,Day : $day\n,State of Origin : $state\n,Essay : $essay");
+                    print(
+                        "Name : $name\n,Course : $course\n,Day : $day\n,State of Origin : $state\n,Essay : $essay");
                   },
                   child: const Text("Register"),
                 ),
@@ -162,7 +170,6 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-
     );
   }
 }
