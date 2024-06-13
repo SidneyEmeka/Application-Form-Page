@@ -15,8 +15,7 @@ Implementing Rows and Colums Alignment in Containers<br>
 		</tr>
 		<tr>
 			<td>
-				<img src="![home1](https://github.com/SidneyEmeka/Application-Form-Page/assets/100122510/3e454aba-6bd9-49fc-87c0-26eb6a8c4942)
-"></img>
+				![home1](https://github.com/SidneyEmeka/Application-Form-Page/assets/100122510/3e454aba-6bd9-49fc-87c0-26eb6a8c4942)
 			</td>
 			<td>
 			<img src="https://github.com/Yczar/test-driven-dart/assets/32166619/3c9154d9-8926-4e1b-978c-7ba565c6b66d" alt="Tukay"></img>
