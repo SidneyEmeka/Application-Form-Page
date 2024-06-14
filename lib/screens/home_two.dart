@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
             ),
             Container(
               padding: const EdgeInsets.symmetric(
-                vertical: 30,
+                vertical: 50,
                 horizontal: 15,
               ),
               decoration: BoxDecoration(
@@ -244,53 +244,38 @@ class _HomeState extends State<Home> {
                             left: 5,
                           ),
                           decoration: BoxDecoration(
-                              border: Border.all(
-                            color: Colors.grey,
-                          )),
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                          ),
                           child: const TextField(
                             decoration:
                                 InputDecoration(hintText: "Description"),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                            left: 5,
-                          ),
-                          // decoration: BoxDecoration(
-                          //   border: Border.all(
-                          //     color: Colors.grey,
-                          //   ),
-                          // ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                            left: 5,
-                          ),
-                          decoration: BoxDecoration(
-                              border: Border.all(
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        width: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(
                             color: Colors.grey,
-                          )),
-                          child: const TextField(
-                            decoration: InputDecoration(hintText: "Sign"),
                           ),
                         ),
-                      ),
+                        child: const TextField(
+                          decoration: InputDecoration(
+                            hintText: "Sign",
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   const SizedBox(
@@ -299,11 +284,11 @@ class _HomeState extends State<Home> {
                   ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(400, 20),
+                          fixedSize: const Size(340, 20),
                           shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero),
                           backgroundColor: Colors.black,
-                          foregroundColor: Colors.red),
+                          foregroundColor: Colors.white),
                       child: const Text("Submit"))
                 ],
               ),
