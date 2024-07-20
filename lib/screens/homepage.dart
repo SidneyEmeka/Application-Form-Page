@@ -1,5 +1,7 @@
 import 'package:form_page/widgets/header.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -7,6 +9,72 @@ class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
 }
+
+class aForm {
+  int id;
+  //String dob;
+  String name;
+  String day;
+  String course;
+  //String time;
+  String essay;
+  String state;
+
+  aForm({required this.id,
+    //required this.dob,
+    required this.name,
+    required this.day,
+    required this.course,
+    //required this.time,
+    required this.essay,
+    required this.state});
+
+  Map<String, dynamic> toMap() {
+    return {
+      "user_id": id,
+     // "user_dob": dob,
+      "user_name": name,
+      "user_day": day,
+      "user_course": course,
+     // "user_time": time,
+      "user_essay": essay,
+      "user_state": state,
+    };
+  }
+}
+////DATABASE
+String dbTableName = "formDB";
+String thePathis = "";
+Future<String> getDBPATH() async {
+    thePathis = await getDatabasesPath();
+    String path = join(thePathis, dbTableName);
+    return path;
+}
+
+
+
+
+
+class DbProvider {
+ Database? db;
+  String mySQLcl = 'CREATE TABLE $dbTableName(user_id integer PRIMARY KEY AUTOINCREMENT,user_name TEXT,user_dob TEXT,user_day TEXT,user_course TEXT,user_time TEXT,user_essay TEXT,user_state TEXT)';
+
+  Future open(String path) async {
+    db = await openDatabase(
+        path,
+        version: 2,
+        onCreate: (Database db, int version) async {
+          await db.execute(mySQLcl);
+        });
+  }
+
+  Future<aForm> insert(aForm aUserForm) async {
+      aUserForm.id = await db!.insert(dbTableName, aUserForm.toMap());
+
+    return aUserForm;
+  }
+}
+
 
 class _HomeState extends State<Home> {
   String dob = "";
@@ -18,6 +86,32 @@ class _HomeState extends State<Home> {
   final dayController = TextEditingController();
   final stateController = TextEditingController();
   final essayController = TextEditingController();
+
+  Future<void> openAppDatabase() async {
+    await DbProvider().open(await getDBPATH());
+  }
+
+  void register() async {
+    final userInput = aForm(id: 0,
+      //  dob: dobController.text,
+        name: nameController.text,
+        day: dayController.text,
+        course: courseController.text,
+       // time: timeController.text,
+        essay: dayController.text,
+        state: stateController.text);
+    final received = await DbProvider().insert(userInput);
+    if (received.toString().contains("0")) {
+      print('registered successfully');
+    }
+  }
+
+  @override
+  void initState() {
+    openAppDatabase();
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +163,20 @@ class _HomeState extends State<Home> {
                       decoration: const InputDecoration(
                         hintText: "DOB",
                       ),
-                      onTap: () => showDatePicker(
+                      onTap: () =>
+                          showDatePicker(
                               context: context,
                               firstDate: DateTime(2017),
                               lastDate: DateTime.now())
-                          .then(
-                        (date) => setState(() => dobController.text =
-                            date.toString().split(" ").first),
-                      ),
+                              .then(
+                                (date) =>
+                                setState(() =>
+                                dobController.text =
+                                    date
+                                        .toString()
+                                        .split(" ")
+                                        .first),
+                          ),
                       controller: dobController,
                     )),
               ],
@@ -99,14 +199,17 @@ class _HomeState extends State<Home> {
                   child: TextField(
                     keyboardType: TextInputType.datetime,
                     decoration: const InputDecoration(hintText: "Time"),
-                    onTap: () async => await showTimePicker(
-                            context: context, initialTime: TimeOfDay.now())
-                        .then((selectedTime) => setState(() {
-                              final time =
-                                  '${selectedTime!.hour.toString()}: ${selectedTime.minute.toString()}';
+                    onTap: () async =>
+                    await showTimePicker(
+                        context: context, initialTime: TimeOfDay.now())
+                        .then((selectedTime) =>
+                        setState(() {
+                          final time =
+                              '${selectedTime!.hour.toString()}: ${selectedTime
+                              .minute.toString()}';
 
-                              timeController.text = time;
-                            })),
+                          timeController.text = time;
+                        })),
                     controller: timeController,
                   ),
                 ),
@@ -139,7 +242,7 @@ class _HomeState extends State<Home> {
               controller: essayController,
               decoration: const InputDecoration(
                 hintText:
-                    "In not more than 500 words, Briefly explain why you should be selected",
+                "In not more than 500 words, Briefly explain why you should be selected",
               ),
               minLines: 3,
               maxLines: 4,
@@ -160,6 +263,7 @@ class _HomeState extends State<Home> {
                     final day = dayController.text;
                     final state = stateController.text;
                     final essay = essayController.text;
+                    register();
                     print(
                         "Name : $name\n,Course : $course\n,Day : $day\n,State of Origin : $state\n,Essay : $essay");
                   },
