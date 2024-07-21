@@ -1,7 +1,8 @@
 # form_page
 
 A simple Application/Registration page for the Tech City Scholarship program<br>
-Implementing Rows and Colums Alignment in Containers<br>
+(Backend)Uses sqflite database to  perform CRUD operations<br>
+(UI)Implementing Rows and Colums Alignment in Containers<br>
 
 
 ## Rows And Columns
